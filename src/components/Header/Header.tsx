@@ -10,7 +10,10 @@ export default function Header() {
           <TowTitles titleH2="Jeudi 13 Décembre | 12:12" titleH1="Makkah" />
         </Grid>
         <Grid xs={6}>
-          <TowTitles titleH2="Prière Al-Maghrib dans" titleH1="1 : 13 : 22" />
+          <TowTitles
+            titleH2="Prochaine prière de Al-Maghrib dans"
+            titleH1="1 : 13 : 22"
+          />
         </Grid>
       </Grid>
     </>
