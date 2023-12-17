@@ -10,7 +10,7 @@ export  interface Localisation {
     city: string
 }
 
-export const fetchAsyncPrayers = createAsyncThunk('shows/fetchAsyncPrayers', async (data: Localisation) => {
+export const fetchAsyncPrayers = createAsyncThunk('prayers/fetchAsyncPrayers', async (data: Localisation) => {
     const {country, city} = data;
     const response = await axios.get(`http://api.aladhan.com/v1/timingsByCity?city=${city}&country=${country}&method=8`);    
     return response.data;

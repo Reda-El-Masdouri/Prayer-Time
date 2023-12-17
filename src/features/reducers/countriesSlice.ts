@@ -1,13 +1,21 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from "axios"
 
-const initialState = {
-  countries: {},
+
+export interface Country {
+    iso2: string,
+    iso3: string
+    country: string,
+    cities: string[]
 }
 
-export const fetchAsyncCountries = createAsyncThunk('shows/fetchAsyncCountries', async () => {
-    // const response = await axios.get(`http://api.aladhan.com/v1/timingsByCity?city=${city}&country=${country}&method=8`);    
-    // return response.data;
+const initialState = {
+  countries: [],
+}
+
+export const fetchAsyncCountries = createAsyncThunk('counries/fetchAsyncCountries', async () => {
+    const response = await axios.get(`https://countriesnow.space/api/v0.1/countries`);    
+    return response.data.filter((country: Country) => country.iso2 !== "EH");
 });
 
 export const countriesSlice = createSlice({
@@ -28,7 +36,7 @@ export const countriesSlice = createSlice({
   }
 })
 
-export const getPrayers = (state: any) => state.countries.countries;
+export const getCountries = (state: any) => state.countries.countries;
 
 // Action creators are generated for each case reducer function
 export const { addCountries } = countriesSlice.actions
