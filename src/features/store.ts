@@ -1,4 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit'
+import prayersSlice from './reducers/prayersSlice'
+import countriesSlice from './reducers/countriesSlice'
+import citiesSlice from './reducers/citiesSlice'
 
 const store = configureStore({
   reducer: {
