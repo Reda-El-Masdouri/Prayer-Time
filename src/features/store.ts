@@ -2,7 +2,7 @@ import { configureStore } from '@reduxjs/toolkit'
 import prayersSlice from './reducers/prayersSlice'
 import countriesSlice from './reducers/countriesSlice'
 
-const store = configureStore({
+export const store = configureStore({
   reducer: {
     prayers: prayersSlice,
     countries: countriesSlice,

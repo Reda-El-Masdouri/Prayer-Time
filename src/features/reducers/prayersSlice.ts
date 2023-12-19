@@ -20,18 +20,10 @@ export const prayersSlice = createSlice({
   name: 'prayers',
   initialState,
   reducers: {
-    addPrayers: (state, { payload })=>{
-        state.prayers = payload;
+    addPrayers: (state, action)=>{
+        state.prayers = action.payload;
     }
   },
-  extraReducers: {
-    [fetchAsyncPrayers.pending]: () => console.log('Pending'),
-    [fetchAsyncPrayers.fulfilled]: (state, { payload }) => {
-        console.log("Fetched Successfylly !");
-        return { ... state, prayers: payload};
-    },
-    [fetchAsyncPrayers.rejected]: () => console.log("Rejected !")
-  }
 })
 
 export const getPrayers = (state: any) => state.prayers.prayers;

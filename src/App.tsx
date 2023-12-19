@@ -5,6 +5,10 @@ import './style.scss'
 import PrayersCards from './components/PrayersCards/PrayersCards'
 import PrayerCardProps from './components/PrayerCard/PrayerCardProps'
 import Selector from './components/Selector/Selector'
+import { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { ThunkDispatch } from '@reduxjs/toolkit'
+import { fetchAsyncCountries } from './api'
 
 export const App = () => {
   const prayers: PrayerCardProps[] = [
@@ -34,6 +38,16 @@ export const App = () => {
       time: '18 : 30 : 09',
     },
   ]
+  const dispatch = useDispatch<ThunkDispatch<any, any, any>>()
+  useEffect(() => {
+    fetchAsyncCountries()
+      .then((response) => {
+        dispatch({ type: 'countries/addCountries', payload: response })
+      })
+      .catch(() => {
+        throw new Error('Uh-oh!')
+      })
+  }, [dispatch])
   return (
     <Container maxWidth="xl">
       <Header />
