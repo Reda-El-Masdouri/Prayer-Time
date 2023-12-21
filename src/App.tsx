@@ -9,35 +9,16 @@ import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { ThunkDispatch } from '@reduxjs/toolkit'
 import { fetchAsyncCountries } from './api'
+import { constructPrayersArray } from './features/utils/utils'
 
 export const App = () => {
-  const prayers: PrayerCardProps[] = [
-    {
-      image: require('../public/images/fajr-prayer.png'),
-      prayerName: 'AL-Fajr',
-      time: '06 : 30 : 09',
-    },
-    {
-      image: require('../public/images/dhhr-prayer-mosque.png'),
-      prayerName: 'AL-Duhr',
-      time: '12 : 30 : 09',
-    },
-    {
-      image: require('../public/images/asr-prayer-mosque.png'),
-      prayerName: 'AL-Asr',
-      time: '15 : 30 : 09',
-    },
-    {
-      image: require('../public/images/sunset-prayer-mosque.png'),
-      prayerName: 'AL-MAGHRIB',
-      time: '17 : 30 : 09',
-    },
-    {
-      image: require('../public/images/night-prayer-mosque.png'),
-      prayerName: 'AL-Ishae',
-      time: '18 : 30 : 09',
-    },
-  ]
+  const prayers: PrayerCardProps[] = constructPrayersArray({
+    Fajr: '00 : 00 : 00',
+    Dhuhr: '00 : 00 : 00',
+    Asr: '00 : 00 : 00',
+    Maghrib: '00 : 00 : 00',
+    Isha: '00 : 00 : 00',
+  })
   const dispatch = useDispatch<ThunkDispatch<any, any, any>>()
   useEffect(() => {
     fetchAsyncCountries()

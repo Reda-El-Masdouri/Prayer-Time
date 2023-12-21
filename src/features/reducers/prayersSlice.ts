@@ -1,13 +1,26 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from "axios"
 
-const initialState = {
-  prayers: {},
+export interface Prayer {
+  Fajr: string,
+  Dhuhr: string,
+  Asr: string,
+  Maghrib: string,
+  Isha: string
+}
+export  interface Localisation {
+  country: string,
+  city: string
 }
 
-export  interface Localisation {
-    country: string,
-    city: string
+const initialState = {
+  prayers: {
+    Fajr: "",
+    Dhuhr: "",
+    Asr: "",
+    Maghrib: "",
+    Isha: ""
+  },
 }
 
 export const fetchAsyncPrayers = createAsyncThunk('prayers/fetchAsyncPrayers', async (data: Localisation) => {
