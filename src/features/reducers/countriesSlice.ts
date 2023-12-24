@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 
 export interface Country {
     iso2: string,
@@ -8,17 +8,56 @@ export interface Country {
 }
 
 const initialeCountry: Country = {
-    iso2: "",
-    iso3: "",
-    cities: [],
-    country: ""
+    iso2: "SA",
+    iso3: "SAU",
+    cities: [
+        "Abha",
+        "Abqaiq",
+        "Al Bahah",
+        "Al Faruq",
+        "Al Hufuf",
+        "Al Qatif",
+        "Al Yamamah",
+        "At Tuwal",
+        "Buraidah",
+        "Dammam",
+        "Dhahran",
+        "Hayil",
+        "Jazirah",
+        "Jeddah",
+        "Jizan",
+        "Jubail",
+        "Khamis Mushait",
+        "Khobar",
+        "Khulays",
+        "Linah",
+        "Madinat Yanbu` as Sina`iyah",
+        "Mecca",
+        "Medina",
+        "Mina",
+        "Najran",
+        "Rabigh",
+        "Rahimah",
+        "Rahman",
+        "Ramdah",
+        "Ras Tanura",
+        "Riyadh",
+        "Sabya",
+        "Safwa",
+        "Sakaka",
+        "Sambah",
+        "Sayhat",
+        "Tabuk",
+        "Yanbu` al Bahr"
+      ],
+    country: "Saudi Arabia"
 }
 
 const initialState = {
   countries: [],
   cities: [],
   selectedCountry: initialeCountry,
-  selectedCity: ""
+  selectedCity: "Mecca"
 }
 
 export const countriesSlice = createSlice({

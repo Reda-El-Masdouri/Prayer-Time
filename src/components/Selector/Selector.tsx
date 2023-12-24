@@ -45,7 +45,7 @@ export default function Selector() {
           data={dataCountries.countries}
           handleChange={handleChangeCountry}
           subject="Pays"
-          value={dataCountries.selectedCountry.county}
+          value={dataCountries.selectedCountry.country}
         />
       </Grid>
       <Grid xs={2} item>

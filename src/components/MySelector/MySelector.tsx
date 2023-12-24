@@ -18,7 +18,7 @@ export default function MySelector({
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           value={value}
-          label="Age"
+          label="Element"
           onChange={handleChange}
         >
           {data &&

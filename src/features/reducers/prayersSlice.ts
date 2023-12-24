@@ -1,5 +1,5 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import axios from "axios"
+import { createSlice } from '@reduxjs/toolkit'
+import PrayerCardProps from '../../components/PrayerCard/PrayerCardProps'
 
 export interface Prayer {
   Fajr: string,
@@ -14,26 +14,15 @@ export  interface Localisation {
 }
 
 const initialState = {
-  prayers: {
-    Fajr: "",
-    Dhuhr: "",
-    Asr: "",
-    Maghrib: "",
-    Isha: ""
-  },
+  prayers: []
 }
-
-export const fetchAsyncPrayers = createAsyncThunk('prayers/fetchAsyncPrayers', async (data: Localisation) => {
-    const {country, city} = data;
-    const response = await axios.get(`http://api.aladhan.com/v1/timingsByCity?city=${city}&country=${country}&method=8`);    
-    return response.data;
-});
 
 export const prayersSlice = createSlice({
   name: 'prayers',
   initialState,
   reducers: {
     addPrayers: (state, action)=>{
+      console.log("payload", action);
         state.prayers = action.payload;
     }
   },
