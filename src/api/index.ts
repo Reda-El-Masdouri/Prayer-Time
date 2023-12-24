@@ -1,4 +1,5 @@
 import axios from "axios";
+import moment from 'moment';
 import { Country } from "../features/reducers/countriesSlice";
 
 export const fetchAsyncCountries =  async () => {
@@ -6,7 +7,8 @@ export const fetchAsyncCountries =  async () => {
     return response.data.data.filter((country: Country) => country.iso2 !== "EH");
 };
 
-export const fetchAsyncPrayersTimesOfCity = async (country:string, city: string) => {    
-    const response = await axios.get(`http://api.aladhan.com/v1/timingsByCity/18-12-2023?city=${city}&country=${country}&method=8`);    
+export const fetchAsyncPrayersTimesOfCity = async (country:string, city: string) => {
+    const date: string = moment(Date.now()).format("DD-MM-YYYY")
+    const response = await axios.get(`http://api.aladhan.com/v1/timingsByCity/${date}?city=${city}&country=${country}&method=8`);    
     return response.data.data.timings;
 }

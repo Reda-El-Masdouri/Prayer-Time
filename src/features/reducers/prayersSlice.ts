@@ -22,7 +22,6 @@ export const prayersSlice = createSlice({
   initialState,
   reducers: {
     addPrayers: (state, action)=>{
-      console.log("payload", action);
         state.prayers = action.payload;
     }
   },
