@@ -1,3 +1,4 @@
+import moment from "moment";
 import PrayerCardProps from "../../components/PrayerCard/PrayerCardProps";
 import { Country } from "../reducers/countriesSlice";
 import { Prayer } from "../reducers/prayersSlice";
@@ -28,4 +29,16 @@ export const constructPrayersArray: (prayer: Prayer) => PrayerCardProps[] = (pra
         })
     })
     return result;
+}
+
+export const capitalizeString: (text: string) => string = (text: string) => {
+    return text[0].toUpperCase() + text.slice(1, text.length)
+}
+
+export const getNextPrayer: (prayers: PrayerCardProps[]) => Promise<string | undefined> = async (prayers: PrayerCardProps[]) => {    
+    if(!prayers) return undefined
+    const tempPrayer = prayers.find((prayer: PrayerCardProps) => {
+        return prayer.time > moment().format('LT')
+      })            
+    return tempPrayer?.prayerName ? tempPrayer?.prayerName : "Fajr"
 }

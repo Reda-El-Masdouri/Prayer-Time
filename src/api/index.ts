@@ -4,7 +4,7 @@ import { Country } from "../features/reducers/countriesSlice";
 
 export const fetchAsyncCountries =  async () => {
     const response = await axios.get(`https://countriesnow.space/api/v0.1/countries`);    
-    return response.data.data.filter((country: Country) => country.iso2 !== "EH");
+    return response.data.data.filter((country: Country) => !["EH", "IL"].includes(country.iso2));
 };
 
 export const fetchAsyncPrayersTimesOfCity = async (country:string, city: string) => {
