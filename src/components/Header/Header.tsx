@@ -3,25 +3,29 @@ import Grid from '@mui/material/Unstable_Grid2'
 import TowTitles from '../TowTitles/TowTitles'
 import { useSelector } from 'react-redux'
 import moment from 'moment'
-import { HeaderProps } from './HeaderProps'
 import { Box, CircularProgress } from '@mui/material'
 import './Header.scss'
 import { capitalizeString, getNextPrayer } from '../../features/utils/utils'
+import PrayerCardProps from '../PrayerCard/PrayerCardProps'
+import { getNeedTime, getRemainingTime, withTowDigits } from './HeaderUtils'
 
-export default function Header({ needTime }: HeaderProps) {
+export default function Header() {
   const countriesSatate = useSelector((state) => state.countries)
   const prayersState = useSelector((state) => state.prayers)
-  const [nextPrayer, setNextPrayer] = useState()
-
+  const [nextPrayer, setNextPrayer] = useState<PrayerCardProps>()
+  const [needTime, setNeedTime] = useState('')
   moment.locale('fr')
-  const nextPrayerMsg: string = 'Prochaine prière de ' + nextPrayer + ' dans'
+
+  const nextPrayerMsg: string =
+    'Prochaine prière de ' + nextPrayer?.prayerName + ' dans'
   const [date, setDate] = useState(
     capitalizeString(moment().format('dddd DD MMMM YYYY | HH : mm : ss'))
   )
+
   useEffect(() => {
     getNextPrayer(prayersState.prayers)
       .then((reponse) => {
-        setNextPrayer(reponse ? reponse : '')
+        setNextPrayer({ ...reponse })
       })
       .catch(() => {
         throw new Error(`Je n'arrive pas à récupérer la prochaine prière !`)
@@ -32,7 +36,16 @@ export default function Header({ needTime }: HeaderProps) {
       )
     }, 1000)
     return () => clearInterval(interval)
-  }, [date])
+  }, [date, prayersState])
+
+  useEffect(() => {
+    const momentNow = moment()
+    const remainingTime = getRemainingTime(nextPrayer, momentNow)
+    const duration = moment.duration(remainingTime)
+    setNeedTime(
+      getNeedTime(duration.hours(), duration.minutes(), duration.seconds())
+    )
+  }, [date, nextPrayer, prayersState])
 
   return (
     <>
