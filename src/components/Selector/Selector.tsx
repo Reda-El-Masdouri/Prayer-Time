@@ -38,23 +38,25 @@ export default function Selector() {
     })
   })
   return (
-    <Grid container spacing={2} className="select-container">
-      <Grid item xs={2}>
-        <MySelector
-          data={dataCountries.countries}
-          handleChange={handleChangeCountry}
-          subject="Pays"
-          value={dataCountries.selectedCountry.country}
-        />
+    <div className="selects-container">
+      <Grid container spacing={2} className="select-container">
+        <Grid item xs={12} sm={4} md={4}>
+          <MySelector
+            data={dataCountries.countries}
+            handleChange={handleChangeCountry}
+            subject="Pays"
+            value={dataCountries.selectedCountry.country}
+          />
+        </Grid>
+        <Grid xs={12} sm={4} md={4} item>
+          <MySelector
+            data={dataCountries.cities}
+            handleChange={handleChangeCity}
+            subject="Villes"
+            value={dataCountries.selectedCity}
+          />
+        </Grid>
       </Grid>
-      <Grid xs={2} item>
-        <MySelector
-          data={dataCountries.cities}
-          handleChange={handleChangeCity}
-          subject="Villes"
-          value={dataCountries.selectedCity}
-        />
-      </Grid>
-    </Grid>
+    </div>
   )
 }

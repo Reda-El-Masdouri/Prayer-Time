@@ -1,8 +1,10 @@
-.select-container {   
-    display: flex; 
-    justify-content: center;
-    margin-top: 20%;
-    .select-country-form {  
-        width: 100%;
+.selects-container {
+    margin-top: 10%;
+    .select-container {   
+        display: flex; 
+        justify-content: center;
+        .select-country-form {  
+            width: 100%;
+        }
     }
 }
