@@ -9,6 +9,6 @@ export const fetchAsyncCountries =  async () => {
 
 export const fetchAsyncPrayersTimesOfCity = async (country:string, city: string) => {
     const date: string = moment(Date.now()).format("DD-MM-YYYY")
-    const response = await axios.get(`http://api.aladhan.com/v1/timingsByCity/${date}?city=${city}&country=${country}&method=8`);    
+    const response = await axios.get(`https://api.aladhan.com/v1/timingsByCity/${date}?city=${city}&country=${country}&method=8`);    
     return response.data.data.timings;
 }
