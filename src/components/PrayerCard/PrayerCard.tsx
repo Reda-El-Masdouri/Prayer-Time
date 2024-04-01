@@ -10,10 +10,11 @@ export default function PrayerCard({
   image,
   prayerName,
   time,
+  myWidth,
 }: PrayerCardProps) {
   return (
     <div className="container-card">
-      <Card sx={{ width: '14vw' }}>
+      <Card sx={{ width: myWidth > 850 ? '14vw' : '50vw' }}>
         <CardMedia
           component="img"
           height="140"
