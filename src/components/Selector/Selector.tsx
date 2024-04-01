@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import { Grid, SelectChangeEvent } from '@mui/material'
-import Stack from '@mui/material/Stack'
 import './Selector.scss'
 import { useDispatch, useSelector } from 'react-redux'
 import MySelector from '../MySelector/MySelector'
