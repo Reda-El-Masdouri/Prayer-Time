@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit'
-import PrayerCardProps from '../../components/PrayerCard/PrayerCardProps'
 
 export interface Prayer {
   Fajr: string,
